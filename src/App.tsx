@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import './index.css';
 import Arrow from './icons/Arrow';
 import { bear, coin, highVoltage, notcoin, rocket, trophy } from './images';
+import SeasonsComponent from './SeasonsComponent'; // ایمپورت SeasonsComponent
+import TabsComponent from './TabsComponent'; // ایمپورت TabsComponent
 
 const App = () => {
   const [points, setPoints] = useState(29857775);
@@ -38,14 +40,12 @@ const App = () => {
 
   return (
     <div className="bg-gradient-main min-h-screen px-4 flex flex-col items-center text-white font-medium">
-
       <div className="absolute inset-0 h-1/2 bg-gradient-overlay z-0"></div>
       <div className="absolute inset-0 flex items-center justify-center z-0">
         <div className="radial-gradient-overlay"></div>
       </div>
 
       <div className="w-full z-10 min-h-screen flex flex-col items-center text-white">
-
         <div className="fixed top-0 left-0 w-full px-4 pt-8 z-10 flex flex-col items-center text-white">
           <div className="w-full cursor-pointer">
             <div className="bg-[#1f1f1f] text-center py-2 rounded-xl">
@@ -61,7 +61,6 @@ const App = () => {
             <span className="ml-1">Gold <Arrow size={18} className="ml-0 mb-1 inline-block" /></span>
           </div>
         </div>
-
 
         <div className="fixed bottom-0 left-0 w-full px-4 pb-4 z-10">
           <div className="w-full flex justify-between gap-2">
@@ -98,7 +97,6 @@ const App = () => {
           </div>
         </div>
 
-
         <div className="flex-grow flex items-center justify-center">
           <div className="relative mt-4" onClick={handleClick}>
             <img src={notcoin} width={256} height={256} alt="notcoin" />
@@ -117,6 +115,12 @@ const App = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* اضافه کردن TabsComponent و SeasonsComponent */}
+        <div className="w-full flex flex-col items-center mt-8">
+          <TabsComponent />
+          <SeasonsComponent />
         </div>
 
       </div>
