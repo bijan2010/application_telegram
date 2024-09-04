@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import './index.css';
 import Arrow from './icons/Arrow';
 import { bear, coin, highVoltage, notcoin, rocket, trophy } from './images';
-import FrenComponent from './components/FrenComponent'; 
-import WalletComponent from './components/WalletComponent'; 
+import FrenComponent from './components/FrenComponent'; // ایمپورت کامپوننت Frens
+import WalletComponent from './components/WalletComponent'; // ایمپورت کامپوننت Wallet
 
 const App = () => {
   const [points, setPoints] = useState(29857775);
   const [energy, setEnergy] = useState(2532);
   const [clicks, setClicks] = useState<{ id: number, x: number, y: number }[]>([]);
-  const [showFrens, setShowFrens] = useState(false); 
-  const [showWallet, setShowWallet] = useState(false); 
+  const [showFrens, setShowFrens] = useState(false); // State برای نمایش Frens
+  const [showWallet, setShowWallet] = useState(false); // State برای نمایش Wallet
   const pointsToAdd = 12;
   const energyToReduce = 12;
 
@@ -31,12 +31,13 @@ const App = () => {
     setClicks((prevClicks) => prevClicks.filter(click => click.id !== id));
   };
 
+  // useEffect hook to restore energy over time
   useEffect(() => {
     const interval = setInterval(() => {
       setEnergy((prevEnergy) => Math.min(prevEnergy + 1, 6500));
-    }, 100);
+    }, 100); // Restore 10 energy points every second
 
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); // Clear interval on component unmount
   }, []);
 
   const handleFrensClick = () => {
@@ -76,7 +77,7 @@ const App = () => {
         </div>
 
         {/* نمایش Frens یا Wallet در مرکز صفحه */}
-        <div className="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50">
+        <div className={`fixed inset-0 z-30 ${showFrens || showWallet ? 'block' : 'hidden'} flex items-center justify-center bg-black bg-opacity-50`}>
           {showFrens && <FrenComponent />}
           {showWallet && <WalletComponent />}
         </div>
@@ -105,7 +106,7 @@ const App = () => {
                 </button>
                 <div className="h-[48px] w-[2px] bg-[#fddb6d]"></div>
                 <button className="flex flex-col items-center gap-1" onClick={handleWalletClick}>
-                  <img src={rocket} width={24} height={24} alt="Boosts" />
+                  <img src={rocket} width={24} height={24} alt="Wallet" />
                   <span>Wallet</span>
                 </button>
               </div>
