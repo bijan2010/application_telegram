@@ -76,9 +76,11 @@ const App = () => {
           </div>
         </div>
 
-        {/* نمایش صفحات Frens یا Wallet */}
-        {showFrens && <FrenComponent />}
-        {showWallet && <WalletComponent />}
+        {/* اینجا اضافه می‌شود: نمایش صفحات Frens یا Wallet */}
+        <div className="content z-20 absolute inset-0 flex items-center justify-center">
+          {showFrens && <FrenComponent />}
+          {showWallet && <WalletComponent />}
+        </div>
 
         <div className="fixed bottom-0 left-0 w-full px-4 pb-4 z-10">
           <div className="w-full flex justify-between gap-2">
@@ -114,7 +116,6 @@ const App = () => {
             <div className="bg-gradient-to-r from-[#f3c45a] to-[#fffad0] h-4 rounded-full" style={{ width: `${(energy / 6500) * 100}%` }}></div>
           </div>
         </div>
-
 
         <div className="flex-grow flex items-center justify-center">
           <div className="relative mt-4" onClick={handleClick}>
