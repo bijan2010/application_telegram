@@ -76,8 +76,8 @@ const App = () => {
           </div>
         </div>
 
-        {/* اینجا اضافه می‌شود: نمایش صفحات Frens یا Wallet */}
-        <div className="content z-20 absolute inset-0 flex items-center justify-center">
+        {/* این بخش جدید را در اینجا اضافه کنید */}
+        <div className="fixed inset-0 z-20 flex items-center justify-center">
           {showFrens && <FrenComponent />}
           {showWallet && <WalletComponent />}
         </div>
