@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import './index.css';
 import Arrow from './icons/Arrow';
 import { bear, coin, highVoltage, notcoin, rocket, trophy } from './images';
-import FrenComponent from './components/FrenComponent'; // ایمپورت کامپوننت Frens
-import WalletComponent from './components/WalletComponent'; // ایمپورت کامپوننت Wallet
+import FrenComponent from './components/FrenComponent'; 
+import WalletComponent from './components/WalletComponent'; 
 
 const App = () => {
   const [points, setPoints] = useState(29857775);
   const [energy, setEnergy] = useState(2532);
   const [clicks, setClicks] = useState<{ id: number, x: number, y: number }[]>([]);
-  const [showFrens, setShowFrens] = useState(false); // State برای نمایش Frens
-  const [showWallet, setShowWallet] = useState(false); // State برای نمایش Wallet
+  const [showFrens, setShowFrens] = useState(false); 
+  const [showWallet, setShowWallet] = useState(false); 
   const pointsToAdd = 12;
   const energyToReduce = 12;
 
@@ -31,13 +31,12 @@ const App = () => {
     setClicks((prevClicks) => prevClicks.filter(click => click.id !== id));
   };
 
-  // useEffect hook to restore energy over time
   useEffect(() => {
     const interval = setInterval(() => {
       setEnergy((prevEnergy) => Math.min(prevEnergy + 1, 6500));
-    }, 100); // Restore 10 energy points every second
+    }, 100);
 
-    return () => clearInterval(interval); // Clear interval on component unmount
+    return () => clearInterval(interval);
   }, []);
 
   const handleFrensClick = () => {
@@ -76,9 +75,11 @@ const App = () => {
           </div>
         </div>
 
-        {/* اضافه کردن نمایش کامپوننت Frens و Wallet */}
-        {showFrens && <FrenComponent />}
-        {showWallet && <WalletComponent />}
+        {/* نمایش Frens یا Wallet در مرکز صفحه */}
+        <div className="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50">
+          {showFrens && <FrenComponent />}
+          {showWallet && <WalletComponent />}
+        </div>
 
         <div className="fixed bottom-0 left-0 w-full px-4 pb-4 z-10">
           <div className="w-full flex justify-between gap-2">
