@@ -76,11 +76,9 @@ const App = () => {
           </div>
         </div>
 
-        {/* این بخش جدید را در اینجا اضافه کنید */}
-        <div className="fixed inset-0 z-20 flex items-center justify-center">
-          {showFrens && <FrenComponent />}
-          {showWallet && <WalletComponent />}
-        </div>
+        {/* اضافه کردن نمایش کامپوننت Frens و Wallet */}
+        {showFrens && <FrenComponent />}
+        {showWallet && <WalletComponent />}
 
         <div className="fixed bottom-0 left-0 w-full px-4 pb-4 z-10">
           <div className="w-full flex justify-between gap-2">
@@ -107,7 +105,7 @@ const App = () => {
                 <div className="h-[48px] w-[2px] bg-[#fddb6d]"></div>
                 <button className="flex flex-col items-center gap-1" onClick={handleWalletClick}>
                   <img src={rocket} width={24} height={24} alt="Boosts" />
-                  <span>Boosts</span>
+                  <span>Wallet</span>
                 </button>
               </div>
             </div>
