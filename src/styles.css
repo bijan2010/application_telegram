@@ -1,0 +1,27 @@
+.main-container {
+  background: linear-gradient(to bottom, #ffdd00, #ffc700);
+  text-align: center;
+  padding: 20px;
+}
+
+.header h1 {
+  color: white;
+  font-size: 2em;
+}
+
+.buttons button {
+  background-color: #ffaa00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+
+.fren-container, .wallet-container {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
