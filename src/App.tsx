@@ -2,17 +2,16 @@ import { useEffect, useState } from 'react';
 import './index.css';
 import Arrow from './icons/Arrow';
 import { bear, coin, highVoltage, notcoin, rocket, trophy } from './images';
-import FrenComponent from './components/FrenComponent'; // ایمپورت کامپوننت Frens
-import WalletComponent from './components/WalletComponent'; // ایمپورت کامپوننت Wallet
-import InviteFrenComponent from './components/InviteFrenComponent'; // ایمپورت InviteFren
+import FrenComponent from './components/FrenComponent';
+import InviteFrenComponent from './components/InviteFrenComponent';
 
 const App = () => {
   const [points, setPoints] = useState(29857775);
   const [energy, setEnergy] = useState(2532);
   const [clicks, setClicks] = useState<{ id: number, x: number, y: number }[]>([]);
-  const [showFrens, setShowFrens] = useState(false); // State برای نمایش Frens
-  const [showWallet, setShowWallet] = useState(false); // State برای نمایش Wallet
-  const [showInviteFren, setShowInviteFren] = useState(false); // State برای نمایش InviteFren
+  const [showFrens, setShowFrens] = useState(false);
+  const [showInvite, setShowInvite] = useState(false);
+
   const pointsToAdd = 12;
   const energyToReduce = 12;
 
@@ -33,41 +32,37 @@ const App = () => {
     setClicks((prevClicks) => prevClicks.filter(click => click.id !== id));
   };
 
+  const handleFrensClick = () => {
+    setShowFrens(true);
+    setShowInvite(false);
+  };
+
+  const handleInviteClick = () => {
+    setShowInvite(true);
+    setShowFrens(false);
+  };
+
+  const handleCloseInvite = () => {
+    setShowInvite(false);
+  };
+
   // useEffect hook to restore energy over time
   useEffect(() => {
     const interval = setInterval(() => {
       setEnergy((prevEnergy) => Math.min(prevEnergy + 1, 6500));
-    }, 100); // Restore 10 energy points every second
+    }, 100);
 
-    return () => clearInterval(interval); // Clear interval on component unmount
+    return () => clearInterval(interval);
   }, []);
-
-  const handleFrensClick = () => {
-    setShowFrens(true);
-    setShowWallet(false);
-    setShowInviteFren(false); // غیرفعال کردن نمایش Invite Fren
-  };
-
-  const handleWalletClick = () => {
-    setShowWallet(true);
-    setShowFrens(false);
-    setShowInviteFren(false); // غیرفعال کردن نمایش Invite Fren
-  };
-
-  const handleInviteFrenClick = () => {
-    setShowInviteFren(true); // نمایش Invite Fren
-  };
 
   return (
     <div className="bg-gradient-main min-h-screen px-4 flex flex-col items-center text-white font-medium">
-
       <div className="absolute inset-0 h-1/2 bg-gradient-overlay z-0"></div>
       <div className="absolute inset-0 flex items-center justify-center z-0">
         <div className="radial-gradient-overlay"></div>
       </div>
 
       <div className="w-full z-10 min-h-screen flex flex-col items-center text-white">
-
         <div className="fixed top-0 left-0 w-full px-4 pt-8 z-10 flex flex-col items-center text-white">
           <div className="w-full cursor-pointer">
             <div className="bg-[#1f1f1f] text-center py-2 rounded-xl">
@@ -84,11 +79,10 @@ const App = () => {
           </div>
         </div>
 
-        {/* نمایش Frens یا Wallet در مرکز صفحه */}
-        <div className={`fixed inset-0 z-30 ${showFrens || showWallet || showInviteFren ? 'block' : 'hidden'} flex items-center justify-center bg-black bg-opacity-50`}>
-          {showFrens && !showInviteFren && <FrenComponent onInviteClick={handleInviteFrenClick} />}
-          {showWallet && <WalletComponent />}
-          {showInviteFren && <InviteFrenComponent />}
+        {/* نمایش کامپوننت‌های جدید */}
+        <div className="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50">
+          {showFrens && <FrenComponent handleInviteClick={handleInviteClick} />}
+          {showInvite && <InviteFrenComponent handleClose={handleCloseInvite} />}
         </div>
 
         <div className="fixed bottom-0 left-0 w-full px-4 pb-4 z-10">
@@ -114,9 +108,9 @@ const App = () => {
                   <span>Earn</span>
                 </button>
                 <div className="h-[48px] w-[2px] bg-[#fddb6d]"></div>
-                <button className="flex flex-col items-center gap-1" onClick={handleWalletClick}>
-                  <img src={rocket} width={24} height={24} alt="Wallet" />
-                  <span>Wallet</span>
+                <button className="flex flex-col items-center gap-1">
+                  <img src={rocket} width={24} height={24} alt="Boosts" />
+                  <span>Boosts</span>
                 </button>
               </div>
             </div>
@@ -145,7 +139,6 @@ const App = () => {
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );

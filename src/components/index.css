@@ -1,0 +1,19 @@
+.bg-white {
+  background-color: #fff;
+}
+
+.rounded-lg {
+  border-radius: 10px;
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bg-blue-500 {
+  background-color: #1d4ed8;
+}
+
+.bg-gray-500 {
+  background-color: #6b7280;
+}
