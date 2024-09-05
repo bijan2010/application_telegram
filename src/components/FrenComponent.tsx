@@ -1,4 +1,4 @@
-import React from 'react';
+// حذف خط import React from 'react';
 
 const FrenComponent = ({ onInviteClick }: { onInviteClick: () => void }) => {
   return (
