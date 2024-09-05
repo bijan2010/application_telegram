@@ -1,17 +1,16 @@
-import React from "react";
+import React from 'react';
 
-const FrenComponent: React.FC = () => {
-  const handleInvite = () => {
-    const referralLink = "https://t.me/yourapp_bot?start=referralCode";
-    navigator.clipboard.writeText(referralLink);
-    alert("Referral link copied to clipboard!");
-  };
-
+const FrenComponent = ({ onInviteClick }: { onInviteClick: () => void }) => {
   return (
-    <div className="fren-container">
-      <h2>Invite Frens</h2>
+    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
+      <h2 className="text-xl font-bold mb-4">Invite Frens</h2>
       <p>Earn rewards for inviting friends!</p>
-      <button onClick={handleInvite}>Invite a Fren</button>
+      <button
+        className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg"
+        onClick={onInviteClick}
+      >
+        Invite a Fren
+      </button>
     </div>
   );
 };

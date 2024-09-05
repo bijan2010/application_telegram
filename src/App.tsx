@@ -4,6 +4,7 @@ import Arrow from './icons/Arrow';
 import { bear, coin, highVoltage, notcoin, rocket, trophy } from './images';
 import FrenComponent from './components/FrenComponent'; // ایمپورت کامپوننت Frens
 import WalletComponent from './components/WalletComponent'; // ایمپورت کامپوننت Wallet
+import InviteFrenComponent from './components/InviteFrenComponent'; // ایمپورت InviteFren
 
 const App = () => {
   const [points, setPoints] = useState(29857775);
@@ -11,6 +12,7 @@ const App = () => {
   const [clicks, setClicks] = useState<{ id: number, x: number, y: number }[]>([]);
   const [showFrens, setShowFrens] = useState(false); // State برای نمایش Frens
   const [showWallet, setShowWallet] = useState(false); // State برای نمایش Wallet
+  const [showInviteFren, setShowInviteFren] = useState(false); // State برای نمایش InviteFren
   const pointsToAdd = 12;
   const energyToReduce = 12;
 
@@ -43,11 +45,17 @@ const App = () => {
   const handleFrensClick = () => {
     setShowFrens(true);
     setShowWallet(false);
+    setShowInviteFren(false); // غیرفعال کردن نمایش Invite Fren
   };
 
   const handleWalletClick = () => {
     setShowWallet(true);
     setShowFrens(false);
+    setShowInviteFren(false); // غیرفعال کردن نمایش Invite Fren
+  };
+
+  const handleInviteFrenClick = () => {
+    setShowInviteFren(true); // نمایش Invite Fren
   };
 
   return (
@@ -77,9 +85,10 @@ const App = () => {
         </div>
 
         {/* نمایش Frens یا Wallet در مرکز صفحه */}
-        <div className={`fixed inset-0 z-30 ${showFrens || showWallet ? 'block' : 'hidden'} flex items-center justify-center bg-black bg-opacity-50`}>
-          {showFrens && <FrenComponent />}
+        <div className={`fixed inset-0 z-30 ${showFrens || showWallet || showInviteFren ? 'block' : 'hidden'} flex items-center justify-center bg-black bg-opacity-50`}>
+          {showFrens && !showInviteFren && <FrenComponent onInviteClick={handleInviteFrenClick} />}
           {showWallet && <WalletComponent />}
+          {showInviteFren && <InviteFrenComponent />}
         </div>
 
         <div className="fixed bottom-0 left-0 w-full px-4 pb-4 z-10">
